@@ -1,7 +1,7 @@
 // CartScreen.js
 
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { useCart } from './CartContext';
 
 const CartScreen = () => {
@@ -28,20 +28,22 @@ const CartScreen = () => {
 };
 
 const CartItem = ({ item, removeFromCart }) => (
-  <View style={styles.cartItem}>
-    <View style={styles.itemInfo}>
-      <Text style={styles.productText}>{item.name}</Text>
-      <Text style={styles.productText}>Quantity: {item.quantity}</Text>
-      <Text style={styles.productText}>Price: ${item.price.toFixed(2)}</Text>
+    <View style={styles.cartItem}>
+      <Image source={{ uri: item.image }} style={styles.productImage} />
+      <View style={styles.itemInfo}>
+        <Text style={styles.productText}>{item.name}</Text>
+        <Text style={styles.productText}>Quantity: {item.quantity}</Text>
+        <Text style={styles.productText}>Price: ${item.price.toFixed(2)}</Text>
+      </View>
+      <TouchableOpacity 
+        onPress={() => removeFromCart(item)}
+        style={styles.button}
+      >
+        <Text style={styles.buttonText}>Remove</Text>
+      </TouchableOpacity>
     </View>
-    <TouchableOpacity 
-      onPress={() => removeFromCart(item)}
-      style={styles.button}
-    >
-      <Text style={styles.buttonText}>Remove</Text>
-    </TouchableOpacity>
-  </View>
-);
+  );
+  
 
 const styles = StyleSheet.create({
   container: {
@@ -92,7 +94,12 @@ const styles = StyleSheet.create({
   },
   productText: {
     color: 'white',
-  }
+  },
+  productImage: {
+    width: 50,
+    height: 50,
+    marginRight: 10,
+  },
 });
 
 export default CartScreen;
