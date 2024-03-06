@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
   },
   productItem: {
     marginBottom: 10,
-    flexDirection: 'row',
     alignItems: 'center',
   },
   productImage: {

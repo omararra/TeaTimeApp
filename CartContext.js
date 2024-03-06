@@ -1,9 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 
-// Create a context for the cart
 const CartContext = createContext();
 
-// Provider component to wrap your app and provide the cart context
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
@@ -25,8 +23,12 @@ export const CartProvider = ({ children }) => {
     setCart(updatedCart);
   };
 
+  const clearCart = () => {
+    setCart([]); // Clear the cart by setting it to an empty array
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );
