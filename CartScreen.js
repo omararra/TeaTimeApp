@@ -8,7 +8,7 @@ const CartScreen = () => {
   const { cart, removeFromCart, clearCart } = useCart();
   const [showPaymentModal, setShowPaymentModal] = useState(false); // State to control payment modal visibility
   const [showBranchModal, setShowBranchModal] = useState(false); // State to control branch selection modal visibility
-  const [selectedBranch, setSelectedBranch] = useState(null); // State to hold selected branch
+  const [selectedBranch, setSelectedBranch] = useState(false); // State to hold selected branch
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null); // State to hold selected payment method
 
   // Calculate total price of items in cart

@@ -1,4 +1,11 @@
 {
   "name": "testing3",
-  "displayName": "testing3"
+  "displayName": "testing3",
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "e9aca850-82c4-45e6-9b96-48a7e14dd518"
+      }
+    }
+  }
 }
