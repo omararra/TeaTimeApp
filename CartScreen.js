@@ -16,17 +16,20 @@ const CartScreen = () => {
 
   // Handle checkout button press
   const handleCheckout = () => {
+    console.log('Checkout button pressed'); // Log when checkout button is pressed
     setShowPaymentModal(true); // Show payment modal when checkout button is pressed
   };
 
   // Handle payment method selection
   const handlePayment = (paymentMethod) => {
+    console.log('Payment method selected:', paymentMethod); // Log the selected payment method
     setSelectedPaymentMethod(paymentMethod); // Set selected payment method
     setShowPaymentModal(false); // Close payment modal after selecting a payment method
     if (cart.length > 0) {
       if (selectedBranch) {
         processPaymentAndSendMessage(); // Process payment and send WhatsApp message if cart is not empty and branch is selected
       } else {
+        console.log('Branch not selected'); // Log if branch is not selected
         setShowBranchModal(true); // Show branch modal if cart is not empty but branch is not selected
       }
     } else {
@@ -39,16 +42,18 @@ const handleBranchSelection = (branch) => {
   console.log('Selected Branch:', branch); // Log selected branch for debugging
   setSelectedBranch(branch); // Set selected branch
   setShowBranchModal(false);
-  processPaymentAndSendMessage()
+  processPaymentAndSendMessage();
 };
 
   // Process payment and send WhatsApp message
 const processPaymentAndSendMessage = () => {
+  console.log('Processing payment...'); // Log when payment processing starts
   // Format cart data for WhatsApp message
+  const branchNumber = selectedBranch ? selectedBranch.number : '';
   const message = cart.map(item => `${item.quantity} ${item.name}`).join('\n');
   // Find the number associated with the selected branch
-  const branchNumber = selectedBranch ? selectedBranch.number : null; // Use null instead of an empty string
-  
+  console.log('BRANCH: ', selectedBranch)
+  console.log('NUMBER: ', branchNumber);
   if (!branchNumber) {
     Alert.alert('Branch Number Missing', 'Unable to find branch number. Please select a branch again.');
     return;
@@ -61,6 +66,7 @@ const processPaymentAndSendMessage = () => {
 
 // Send WhatsApp message
 const sendWhatsAppMessage = (number, message) => {
+  console.log('Sending WhatsApp message...'); // Log when sending WhatsApp message starts
   const whatsappUrl = `whatsapp://send?phone=${number}&text=${encodeURIComponent(message)}`;
   Linking.openURL(whatsappUrl);
 };
